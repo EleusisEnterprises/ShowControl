@@ -5,7 +5,7 @@ import osc_helpers
 from TD import DAT
 
 
-def onTableChange(dat):
+def onTableChange(dat: DAT):
     """Handle table changes by forwarding OSC messages via :mod:`osc_helpers`."""
     for row in dat.rows()[1:]:
         address = row[0].val
