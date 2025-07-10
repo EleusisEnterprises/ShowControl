@@ -10,10 +10,12 @@ import routing_engine
 import osc_helpers
 from TD import DAT
 
-
     The callback forwards each OSC row to :func:`routing_engine.route_message`.
     See ``TDCONTEXT.md`` for an overview of callback execution.
     """
+
+def onTableChange(dat: DAT):
+    """Handle table changes by forwarding OSC messages via :mod:`osc_helpers`."""
     for row in dat.rows()[1:]:
         address = row[0].val
         raw_value = row[1].val

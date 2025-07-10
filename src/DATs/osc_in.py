@@ -7,7 +7,7 @@ The default implementation simply prints the address and arguments to the
 Textport.
 """
 
-from TD import DAT, OP
+from TD import DAT
 
 
 def onReceiveOSC(dat: 'DAT', rowIndex, message, byteData, timeStamp, address, args, peer) -> None:

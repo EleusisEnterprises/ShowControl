@@ -1,3 +1,5 @@
+from TD import op
+
 """OSC Out helper functions for TouchDesigner.
 
 This module is loaded by ``/project1/osc_out_dat`` and provides a single
