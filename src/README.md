@@ -22,7 +22,7 @@ This folder holds:
 - **osc_out.py** → used by `/project1/scripts/osc_helpers.py` to send messages via OSC Out DAT
 
 These `.py` files let you edit all your DAT logic in VSCode, then hot-reload in TD.
-=======
+
 These `.txt` files let you edit all your DAT logic in VSCode, then hot-reload in TD.
 
 ## JSON Schemas
