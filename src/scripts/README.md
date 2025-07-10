@@ -10,8 +10,6 @@ All external Python code used by TouchDesigner lives here:
   `handle_outgoing`.
 - `ui_helpers.py` – build addresses from UI selections and expose helper
   functions.
-- `osc_helpers.py` → load JSON, route incoming OSC, fire outgoing OSC
-- `ui_helpers.py` → build addresses from UI selections, expose helper functions
 
 ## Function Overview
 
