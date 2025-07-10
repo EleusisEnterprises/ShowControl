@@ -8,6 +8,9 @@ All external Python code used by TouchDesigner lives here:
   `osc_patterns.json`, translates the result through mapping files (e.g.,
   `resolume_mapping.json`), and forwards each destination address/value via
   `handle_outgoing`.
+- `routing_engine.py` – higher level router that exposes `route_message` to
+  resolve generic addresses using those mappings and substitute parameters
+  before forwarding the OSC data.
 - `ui_helpers.py` – build addresses from UI selections and expose helper
   functions.
 
@@ -17,6 +20,11 @@ All external Python code used by TouchDesigner lives here:
 
 - **handle_outgoing(address, value)** – send a single OSC message via the `osc_out` DAT.
 - **handle_incoming()** – placeholder to process queued OSC messages.
+
+### routing_engine.py
+
+- **route_message(address, value)** – look up `address` in the loaded pattern
+  tables and send formatted destination messages using `osc_helpers.handle_outgoing`.
 
 ### ui_helpers.py
 
