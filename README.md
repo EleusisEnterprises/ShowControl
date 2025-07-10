@@ -22,13 +22,15 @@ project-root/
 │   ├── scripts/              # Python modules (osc_helpers.py, ui_helpers.py)
 │   ├── osc_patterns.json     # Generic OSC endpoint templates
 │   ├── resolume_mapping.json # Resolume-specific address mappings
-│   └── laser_mapping.json    # Laser-specific address mappings
+│   ├── laser_mapping.json    # Laser-specific address mappings
+│   └── onyx_mapping.json     # Obsidian Onyx address mappings
 ├── showcontrol.toe           # Main TouchDesigner project file
 ├── README.md                 # This overview and usage guide
 └── .gitignore
 ```
 
 See [`TDCONTEXT.md`](TDCONTEXT.md) for an overview of TouchDesigner Python scripting.
+OSC address patterns for Resolume and Onyx are documented in [OSCCONTEXT.md](OSCCONTEXT.md).
 
 ## Getting Started
 
