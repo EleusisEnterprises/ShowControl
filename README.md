@@ -30,6 +30,7 @@ project-root/
 ```
 
 See [`TDCONTEXT.md`](TDCONTEXT.md) for an overview of TouchDesigner Python scripting.
+OSC address patterns for Resolume and Onyx are documented in [OSCCONTEXT.md](OSCCONTEXT.md).
 
 ## Getting Started
 
