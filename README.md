@@ -101,15 +101,13 @@ To allow *live, flexible routing* of control signals between any combination of 
 
 ```
 src/
-├── DATs/
-│   ├── project1/
+├── OPs/
+│   ├── Router/
 │   │   ├── osc_in.py
 │   │   ├── osc_out.py
 │   │   ├── routing_engine.py
 │   ├── midi_in/
-│   │   ├── midi_to_osc.py
-│   │   ├── midi_callback.py
-│   │   
+│   │   ├── midi_to_osc.py  
 │   ├── onyx/
 │   │   ├── ndi_to_onyx.py
 │   │   ├── dmx_from_onyx.py
