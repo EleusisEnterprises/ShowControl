@@ -17,6 +17,7 @@ PATTERNS_PATH = os.path.join(SRC_DIR, 'osc_patterns.json')
 MAPPING_FILES = [
     os.path.join(SRC_DIR, 'resolume_mapping.json'),
     os.path.join(SRC_DIR, 'laser_mapping.json'),
+    os.path.join(SRC_DIR, 'onyx_mapping.json'),
 ]
 
 _patterns: dict[str, Any] = {}
@@ -37,7 +38,22 @@ def _load_configs() -> None:
     _patterns = _read_json(PATTERNS_PATH)
     _mappings = {}
     for mf in MAPPING_FILES:
-        _mappings.update(_read_json(mf))
+        data = _read_json(mf)
+        for key, val in data.items():
+            if key not in _mappings:
+                _mappings[key] = val
+            else:
+                existing = _mappings[key]
+                if isinstance(existing, list):
+                    if isinstance(val, list):
+                        existing.extend(val)
+                    else:
+                        existing.append(val)
+                else:
+                    if isinstance(val, list):
+                        _mappings[key] = [existing] + val
+                    else:
+                        _mappings[key] = [existing, val]
 
 # Load configs on import
 _load_configs()
