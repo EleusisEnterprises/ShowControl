@@ -1,14 +1,12 @@
 {
     "python.analysis.extraPaths": [
         "./src/scripts"
-    ]
-}
+    ],
 
-{
-  // Tell the extension where to find your running TD LSP
-  "tdCompletesMe.host": "127.0.0.1",
-  "tdCompletesMe.port": 5678,
+    // Tell the extension where to find your running TD LSP
+    "tdCompletesMe.host": "127.0.0.1",
+    "tdCompletesMe.port": 1338,
 
-  // (Optional) If you want VSCode to lint against TD's Python
-  "python.pythonPath": "C:/Program Files/Derivative/TouchDesigner/bin/python.exe"
+    // (Optional) If you want VSCode to lint against TD's Python
+    "python.pythonPath": "C:/Program Files/Derivative/TouchDesigner/bin/python.exe"
 }
