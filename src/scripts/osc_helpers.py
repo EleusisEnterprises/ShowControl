@@ -1,3 +1,4 @@
+
 from __future__ import annotations
 import json
 import os
@@ -50,8 +51,9 @@ def handle_outgoing(address: str, value: Any) -> None:
     out.appendRow([address, value])
     out.send()
 
-def handle_incoming(address: str, value: Any) -> List[str]:
-    """Translate a generic OSC address into target-specific messages."""
+def handle_incoming(address, value):
+    """Map an incoming OSC address/value to one or more outgoing messages."""
+    # Obtain generic keys for this incoming address
     generics = _patterns.get(address)
     if not generics:
         return []
