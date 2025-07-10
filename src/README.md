@@ -28,5 +28,6 @@ These `.py` files let you edit all your DAT logic in VSCode, then hot-reload in 
 - **osc_patterns.json** maps generic cue names to OSC address templates.
 - **resolume_mapping.json** translates those generic names to Resolume-specific addresses.
 - **laser_mapping.json** does the same for laser controllers.
+- **onyx_mapping.json** maps generic cues to Obsidian Onyx lighting commands.
 
 These files let `osc_helpers.handle_incoming` route a single generic message to multiple targets.
