@@ -20,6 +20,7 @@ project-root/
 ├── src/                      # Core code and configuration
 │   ├── DATs/                 # Editable Text DAT scripts (callbacks, templates)
 │   ├── scripts/              # Python modules (osc_helpers.py, ui_helpers.py)
+│   │                           # plus address_generators.py and ui_builder.py
 │   ├── osc_patterns.json     # Generic OSC endpoint templates
 │   ├── resolume_mapping.json # Resolume-specific address mappings
 │   ├── laser_mapping.json    # Laser-specific address mappings
@@ -46,6 +47,7 @@ OSC address patterns for Resolume and Onyx are documented in [OSCCONTEXT.md](OSC
 
    * Update JSON patterns and mapping files in `src/`.
    * Modify Python modules in `src/scripts/` and Text DATs in `src/DATs/` using VSCode.
+   * Generate fresh mapping files using `python -m scripts.address_generators` if you expand layer or playback counts.
 3. **Load in TD & Sync:**
 
    * Open `showcontrol.toe` in TouchDesigner.
