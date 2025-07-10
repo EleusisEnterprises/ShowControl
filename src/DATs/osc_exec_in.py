@@ -1,35 +1,36 @@
-# me - this DAT.
-# 
-# dat - the changed DAT
-# rows - a list of row indices
-# cols - a list of column indices
-# cells - the list of cells that have changed content
-# prev - the list of previous string contents of the changed cells
-# 
-# Make sure the corresponding toggle is enabled in the DAT Execute DAT.
-# 
-# If rows or columns are deleted, sizeChange will be called instead of row/col/cellChange.
+"""DAT Execute callbacks for routing incoming OSC messages."""
+
+import osc_helpers
+
+# TouchDesigner requires specific callback names that do not follow PEP 8
+# conventions. Disable the related pylint warnings for this module.
+# pylint: disable=invalid-name,unused-argument
 
 
 def onTableChange(dat):
-    # Skip header row
+    """Handle table changes by forwarding OSC messages via :mod:`osc_helpers`."""
     for row in dat.rows()[1:]:
-        address = row[0].val       # the OSC address string
-        value   = float(row[1].val) # the numeric value
-        import osc_helpers       # your external Python module
+        address = row[0].val
+        value = float(row[1].val)
         osc_helpers.handle_incoming(address, value)
     return
 
 
 def onRowChange(dat, rows):
-	return
+    """Callback triggered when rows change; currently unused."""
+    return
+
 
 def onColChange(dat, cols):
-	return
+    """Callback triggered when columns change; currently unused."""
+    return
+
 
 def onCellChange(dat, cells, prev):
-	return
+    """Callback triggered when individual cells change; currently unused."""
+    return
+
 
 def onSizeChange(dat):
-	return
-	
+    """Callback triggered when table size changes; currently unused."""
+    return
