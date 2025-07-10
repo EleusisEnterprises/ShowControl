@@ -1,0 +1,13 @@
+# Node modules
+node_modules/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# VSCode settings
+.vscode/
+
+# TouchDesigner backups
+Backup/
+*.toe.backup
