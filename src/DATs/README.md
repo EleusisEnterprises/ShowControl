@@ -5,8 +5,8 @@ This folder holds all external Text DAT scripts used by **showcontrol.toe**. Eac
 ## Files
 
 - **`osc_exec_in.py`**
-  - Attached to `/project1/dat_execute_in` (DAT Execute DAT)  
-  - Contains the `onTableChange(dat)` callback that reads OSC In DAT rows, extracts `address` and `value`, and calls:
+  - Attached to `/project1/dat_execute_in` (DAT Execute DAT)
+  - Contains the `onTableChange(dat)` callback that reads OSC In DAT rows, validates that column `1` contains a numeric value, and calls:
 
     ```python
     import osc_helpers
