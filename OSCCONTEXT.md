@@ -349,9 +349,7 @@ To design interoperability or routing logic, here is a structured summary of Ony
     For example, sending the string `"Group 1 At Full"` (with appropriate OSC string type tag) to this address would execute that console command.
 - `/Mx/commandLine/0002/text/color` – Color of the input text.
 
----
-
-#### **Version Notes**
+### **Version Notes**
 
 The OSC mapping for Onyx is comprehensive as of Onyx v4.4 and above (the OSC Mapping v1.20 document covers these endpoints).  
 Earlier versions of Onyx (and its predecessor Martin M-PC) had more limited or different OSC implementations.  

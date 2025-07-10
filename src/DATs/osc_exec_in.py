@@ -1,18 +1,14 @@
 """DAT Execute callbacks for routing incoming OSC messages."""
 
-These functions are linked to the ``/project1/dat_execute_in`` operator in the
-TouchDesigner project. For an overview of how DAT callbacks work inside
-TouchDesigner, see the accompanying ``TDCONTEXT.md`` file.
-"""
-from td import DAT, tdu
+#These functions are linked to the ``/project1/dat_execute_in`` operator in the
+#TouchDesigner project. For an overview of how DAT callbacks work inside 
+#TouchDesigner, see the documentation in ``TDCONTEXT.md``.
+import TD
+from TD import DAT, tdu
 import routing_engine
-
 import osc_helpers
-from TD import DAT
 
-    The callback forwards each OSC row to :func:`routing_engine.route_message`.
-    See ``TDCONTEXT.md`` for an overview of callback execution.
-    """
+#TouchDesigner, see the documentation in ``TDCONTEXT.md``.
 
 def onTableChange(dat: DAT):
     """Handle table changes by forwarding OSC messages via :mod:`osc_helpers`."""
