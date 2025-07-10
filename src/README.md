@@ -2,11 +2,9 @@
 
 This folder holds:  
 
-- `input_handlers.py`: Ingests and parses incoming OSC/MIDI signals.
-- `routing_engine.py`: Core logic that maps inputs → outputs.
-- `osc_utils.py`: Helper functions for sending/receiving OSC messages.
-- `ui_callbacks.py`: Logic for UI button presses, dropdowns, etc.
-- `stage_utils.py`: (Planned) Utilities for 3D stage modeling and projection mapping.
+- `scripts/osc_helpers.py` – loads OSC patterns/mappings and sends messages.
+- `scripts/ui_helpers.py` – helper utilities for building addresses from UI selections.
+- `DATs/*.py` – callback scripts executed by TouchDesigner (see below).
 
 <!-- Example configs live in `config/routing_map.json`, `config/input_aliases.json`, and `config/endpoints.json`. -->
 
