@@ -10,7 +10,7 @@ import os
 
 def onStart():
  # Add the TouchDesigner project folder to sys.path
- proj_folder = project.folder
+ proj_folder = project.folder # type: ignore
  if proj_folder not in sys.path:
     sys.path.append(proj_folder)
 
