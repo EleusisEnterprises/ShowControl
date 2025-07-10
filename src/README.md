@@ -2,11 +2,9 @@
 
 This folder holds:  
 
-- `input_handlers.py`: Ingests and parses incoming OSC/MIDI signals.
-- `routing_engine.py`: Core logic that maps inputs → outputs.
-- `osc_utils.py`: Helper functions for sending/receiving OSC messages.
-- `ui_callbacks.py`: Logic for UI button presses, dropdowns, etc.
-- `stage_utils.py`: (Planned) Utilities for 3D stage modeling and projection mapping.
+- `scripts/osc_helpers.py` – loads OSC patterns/mappings and sends messages.
+- `scripts/ui_helpers.py` – helper utilities for building addresses from UI selections.
+- `DATs/*.py` – callback scripts executed by TouchDesigner (see below).
 
 <!-- Example configs live in `config/routing_map.json`, `config/input_aliases.json`, and `config/endpoints.json`. -->
 
@@ -28,5 +26,6 @@ These `.py` files let you edit all your DAT logic in VSCode, then hot-reload in 
 - **osc_patterns.json** maps generic cue names to OSC address templates.
 - **resolume_mapping.json** translates those generic names to Resolume-specific addresses.
 - **laser_mapping.json** does the same for laser controllers.
+- **onyx_mapping.json** maps generic cues to Obsidian Onyx lighting commands.
 
 These files let `osc_helpers.handle_incoming` route a single generic message to multiple targets.
