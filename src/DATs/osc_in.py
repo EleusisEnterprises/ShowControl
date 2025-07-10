@@ -6,7 +6,7 @@ prints the address and arguments to the Textport. Modify it as needed
 for your project.
 """
 
-# pylint: disable=invalid-name
+# pylint: disable=invalid-name,unused-argument
 
 def onReceiveOSC(dat, rowIndex, message, byteData, timeStamp, address, args, peer):
     """Handle a received OSC message from the OSC In DAT.
