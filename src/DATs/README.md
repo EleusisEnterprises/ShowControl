@@ -13,9 +13,9 @@ This folder holds all external Text DAT scripts used by **showcontrol.toe**. Eac
     osc_helpers.handle_incoming(address, value)
     ```
 
-- **`osc_in.py`** *(optional template)*
-  - Can be used to document or pre-populate settings for `/project1/osc_in_dat` (OSC In DAT)  
-  - Example content might include comments on port number, address filters, etc.
+- **`osc_in.py`**
+  - Callback for `/project1/osc_in_dat` (OSC In DAT)
+  - The default code prints the received OSC address and arguments to the Textport.
 
 - **`osc_out.py`**
   - Used by `/project1/osc_out_dat` (OSC Out DAT)  
