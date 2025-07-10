@@ -1,6 +1,10 @@
 # DATs Directory
 
-This folder holds all external Text DAT scripts used by **showcontrol.toe**. Each `.py` file here is loaded by a corresponding Text DAT in TouchDesigner with **“Keep in sync with external file”** enabled. Edit these files in VSCode and your changes will hot-reload in TD. See [`../../TDCONTEXT.md`](../../TDCONTEXT.md) for an overview of TouchDesigner Python scripting.
+This folder holds all external Text DAT scripts used by **showcontrol.toe**. Each
+`.py` file here is loaded by a corresponding Text DAT in TouchDesigner with
+**“Keep in sync with external file”** enabled. Edit these files in VS Code and
+your changes will hot‑reload in TD. See [`../../TDCONTEXT.md`](../../TDCONTEXT.md)
+for an overview of TouchDesigner Python scripting.
 
 ## Files
 
@@ -18,7 +22,7 @@ This folder holds all external Text DAT scripts used by **showcontrol.toe**. Eac
   - The default code prints the received OSC address and arguments to the Textport.
 
 - **`osc_out.py`**
-  - Used by `/project1/osc_out_dat` (OSC Out DAT)  
+  - Used by `/project1/osc_out_dat` (OSC Out DAT)
   - Defines `send_via_dat` which writes `[address, value]` rows before sending:
 
     ```python
@@ -27,6 +31,10 @@ This folder holds all external Text DAT scripts used by **showcontrol.toe**. Eac
         op('osc_out_dat').appendRow([address, value])
         op('osc_out_dat').send()
     ```
+- **`init_path.py`**
+  - Execute DAT that runs on project start.
+  - Adds the repository's `src/scripts` directory to `sys.path` so the other DAT
+    modules can import `routing_engine`, `osc_helpers`, and friends.
 
 ## Usage
 
