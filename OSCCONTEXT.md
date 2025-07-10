@@ -205,16 +205,16 @@ For example, sending a press to `/Mx/button/4423` would activate Bank 3 (making 
 Onyx exposes the master faders (Grand Master and other master controls) via OSC:
 
 - **Grand Master:**
-    - `/Mx/fader/2202` – Grand Master Level (0–255). This controls the overall output intensity of the console.
-    - `/Mx/button/2201` – Grand Master Flash (often functions as a Blackout or flash button). Pressing this (value 1) will typically drop the GM to zero while held.
+  - `/Mx/fader/2202` – Grand Master Level (0–255). This controls the overall output intensity of the console.
+  - `/Mx/button/2201` – Grand Master Flash (often functions as a Blackout or flash button). Pressing this (value 1) will typically drop the GM to zero while held.
 - **Flash Master:** (Onyx includes a “Flash Master” which scales flash button intensity)
-    - `/Mx/fader/2212` – Flash Master Level
-    - `/Mx/button/2211` – Flash Master flash button (toggles it)
+  - `/Mx/fader/2212` – Flash Master Level
+  - `/Mx/button/2211` – Flash Master flash button (toggles it)
 - **Group Masters:** (Group Master A and B for additional intensity group control)
-    - `/Mx/fader/2222` – Group Master A Level
-    - `/Mx/button/2221` – Group Master A flash (button)
-    - `/Mx/fader/2232` – Group Master B Level
-    - `/Mx/button/2231` – Group Master B flash button
+  - `/Mx/fader/2222` – Group Master A Level
+  - `/Mx/button/2221` – Group Master A flash (button)
+  - `/Mx/fader/2232` – Group Master B Level
+  - `/Mx/button/2231` – Group Master B flash button
 
 These masters allow global or grouped intensity adjustments.  
 For instance, you could fade out all lights by lowering Grand Master via OSC, or trigger a momentary blackout by pressing the GM flash.
@@ -351,7 +351,7 @@ To design interoperability or routing logic, here is a structured summary of Ony
 
 ---
 
-### **Version Notes**
+#### **Version Notes**
 
 The OSC mapping for Onyx is comprehensive as of Onyx v4.4 and above (the OSC Mapping v1.20 document covers these endpoints).  
 Earlier versions of Onyx (and its predecessor Martin M-PC) had more limited or different OSC implementations.  

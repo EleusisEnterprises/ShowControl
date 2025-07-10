@@ -4,7 +4,7 @@ These functions are linked to the ``/project1/dat_execute_in`` operator in the
 TouchDesigner project. For an overview of how DAT callbacks work inside
 TouchDesigner, see the accompanying ``TDCONTEXT.md`` file.
 """
-
+from td import DAT, tdu
 import osc_helpers
 
 # TouchDesigner requires specific callback names that do not follow PEP 8
