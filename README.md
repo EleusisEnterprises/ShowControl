@@ -42,7 +42,4 @@ The system uses **OSC as the base protocol**, features a **simple UI for mapping
 ├── requirements.txt            # External Python dependencies (if needed)
 ├── .gitignore                  # Ignore logs, backups, etc.
 └── README.md                   # You're here!
-
-git clone https://github.com/yourname/show-control.git
-cd show-control
-code .
+```
