@@ -7,3 +7,5 @@ This folder holds .tox components used for interface building.
 - `control_panel_base.tox`: Generic container with UI toggles, tabs, buttons
 
 These can be dropped into any TD project and connect to the main logic via DATs.
+
+<!-- Example configs live in `config/routing_map.json`, `config/input_aliases.json`, and `config/endpoints.json`. -->

@@ -7,3 +7,5 @@ This folder defines the system behavior using JSON.
 - `endpoints.json`: Known output destinations with IP, port, etc.
 
 All JSON files are hot-reloadable in TouchDesigner and version-controlled via GitHub.
+
+<!-- Example configs live in `config/routing_map.json`, `config/input_aliases.json`, and `config/endpoints.json`. -->

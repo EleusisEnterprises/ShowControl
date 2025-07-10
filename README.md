@@ -43,3 +43,5 @@ The system uses **OSC as the base protocol**, features a **simple UI for mapping
 ├── .gitignore                  # Ignore logs, backups, etc.
 └── README.md                   # You're here!
 ```
+
+<!-- Example configs live in `config/routing_map.json`, `config/input_aliases.json`, and `config/endpoints.json`. -->
