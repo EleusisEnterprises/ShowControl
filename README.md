@@ -28,9 +28,6 @@ project-root/
 └── .gitignore
 ```
 
-<<<<<<< HEAD
-<!-- Example configs live in `config/routing_map.json`, `config/input_aliases.json`, and `config/endpoints.json`. -->
-=======
 ## Getting Started
 
 1. **Clone & Open:**
@@ -60,4 +57,3 @@ project-root/
 ---
 
 **Keep this README up to date as the project evolves to ensure maximum clarity for both human collaborators and AI assistants.**
->>>>>>> main

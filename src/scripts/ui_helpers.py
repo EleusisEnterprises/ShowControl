@@ -1,4 +1,11 @@
-from typing import List, Union
+from typing import List
+
+# TouchDesigner defines a global `op` function for looking up operators. When
+# running this module outside of TD (e.g. during static analysis), that function
+# doesn't exist, so provide a no-op fallback to avoid NameError.
+if 'op' not in globals():  # pragma: no cover - used only for type checking
+    def op(_path):  # type: ignore
+        return None
 
 
 def _get_op(op_or_path):
@@ -52,4 +59,3 @@ def assemble_osc_address(layer_dd, channel_dd, index_field=None) -> str:
     if index_field is not None:
         parts.append(str(int(get_numeric_value(index_field))))
     return build_osc_address(parts)
-')
