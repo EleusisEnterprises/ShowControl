@@ -19,7 +19,7 @@ This folder holds all external Text DAT scripts used by **showcontrol.toe**. Eac
 
 - **`osc_out.py`**
   - Used by `/project1/osc_out_dat` (OSC Out DAT)  
-  - Defines a helper snippet that writes `[address, value]` rows before sending, for example:
+  - Defines `send_via_dat` which writes `[address, value]` rows before sending:
 
     ```python
     def send_via_dat(address, value):
