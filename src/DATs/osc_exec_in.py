@@ -11,7 +11,6 @@ import osc_helpers
 # conventions. Disable the related pylint warnings for this module.
 # pylint: disable=invalid-name,unused-argument
 
-
 def onTableChange(dat: 'DAT') -> None:
     """Handle table changes from the linked ``DAT Execute`` DAT.
 
@@ -19,8 +18,27 @@ def onTableChange(dat: 'DAT') -> None:
     See ``TDCONTEXT.md`` for an overview of callback execution.
     """
     for row in dat.rows()[1:]:
+        # Ensure the row has at least two cells before accessing them.
+        if len(row) < 2:
+            print("osc_exec_in: skipping row with missing columns", row)
+            continue
+
         address = row[0].val
-        value = float(row[1].val)
+        raw_value = row[1].val
+
+        # Try parsing the value as a float. TouchDesigner provides
+        # ``tdu.tryParse`` which returns ``None`` for invalid input.
+        value = None
+        if 'tdu' in globals() and hasattr(tdu, 'tryParse'):  # pragma: no cover
+            value = tdu.tryParse(raw_value)
+
+        if value is None:
+            try:
+                value = float(raw_value)
+            except (TypeError, ValueError):
+                print(f"osc_exec_in: invalid value '{raw_value}' for {address}")
+                continue
+
         osc_helpers.handle_incoming(address, value)
     return
 

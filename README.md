@@ -28,6 +28,8 @@ project-root/
 └── .gitignore
 ```
 
+See [`TDCONTEXT.md`](TDCONTEXT.md) for an overview of TouchDesigner Python scripting.
+
 ## Getting Started
 
 1. **Clone & Open:**
