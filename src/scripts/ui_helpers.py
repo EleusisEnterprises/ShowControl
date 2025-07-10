@@ -52,3 +52,4 @@ def assemble_osc_address(layer_dd, channel_dd, index_field=None) -> str:
     if index_field is not None:
         parts.append(str(int(get_numeric_value(index_field))))
     return build_osc_address(parts)
+')
