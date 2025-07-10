@@ -1,8 +1,6 @@
 # Assets
 
-Images, test input recordings, and sample data used in testing or previews.
-
-Subfolders:
-
-- `images/`: UI mockups, stage reference shots
-- `test_inputs/`: Recorded signal files or dummy control sequences
+Store any media files used by TouchDesigner:  
+– Textures  
+– UI images  
+– Logos  
