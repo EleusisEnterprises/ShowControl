@@ -9,7 +9,5 @@
   "tdCompletesMe.port": 5678,
 
   // Optional: point to TouchDesigner’s embedded Python for linting/intellisense
-  "python.pythonPath": [
-    "C:/ProgramFiles/Derivative/TouchDesigner/bin/python.exe"
-],
+  "python.pythonPath": "C:/Program Files/Derivative/TouchDesigner/bin/python.exe"
 }
