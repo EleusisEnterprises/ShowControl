@@ -1,15 +1,16 @@
-"""OSC In DAT callback.
+"""Callback module for an ``OSC In DAT`` operator.
 
-This module defines :func:`onReceiveOSC`, which TouchDesigner calls
-whenever an OSC message arrives. The default implementation simply
-prints the address and arguments to the Textport. Modify it as needed
-for your project.
+The :func:`onReceiveOSC` function is connected to ``/project1/osc_in_dat`` in the
+TouchDesigner project. It runs whenever an OSC message arrives. For details on
+how callbacks fit into the Python environment, consult ``TDCONTEXT.md``.
+The default implementation simply prints the address and arguments to the
+Textport.
 """
 
 # pylint: disable=invalid-name
 
-def onReceiveOSC(dat, rowIndex, message, byteData, timeStamp, address, args, peer):
-    """Handle a received OSC message from the OSC In DAT.
+def onReceiveOSC(dat: 'DAT', rowIndex, message, byteData, timeStamp, address, args, peer) -> None:
+    """Handle a received OSC message from the linked ``OSC In DAT``.
 
     Parameters
     ----------
