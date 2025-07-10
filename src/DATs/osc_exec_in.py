@@ -1,10 +1,8 @@
 """DAT Execute callbacks for routing incoming OSC messages."""
-import touchdesigner
-import osc_helpers
 
-# TouchDesigner requires specific callback names that do not follow PEP 8
-# conventions. Disable the related pylint warnings for this module.
-# pylint: disable=invalid-name,unused-argument
+
+import osc_helpers
+from TD import DAT
 
 
 def onTableChange(dat):

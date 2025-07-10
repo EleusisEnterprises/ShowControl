@@ -7,6 +7,9 @@ The default implementation simply prints the address and arguments to the
 Textport.
 """
 
+from TD import DAT, OP
+
+
 def onReceiveOSC(dat: 'DAT', rowIndex, message, byteData, timeStamp, address, args, peer) -> None:
     """Handle a received OSC message from the linked ``OSC In DAT``.
 
@@ -33,3 +36,4 @@ def onReceiveOSC(dat: 'DAT', rowIndex, message, byteData, timeStamp, address, ar
     _ = (dat, rowIndex, message, byteData, timeStamp, peer)
     print(f"Received OSC {address}: {args}")
     return
+
