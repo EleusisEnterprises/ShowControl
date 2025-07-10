@@ -48,7 +48,7 @@ project-root/
 3. **Load in TD & Sync:**
 
    * Open `showcontrol.toe` in TouchDesigner.
-   * Ensure Text DATs point to the `src/DATs/*.txt` files and have “Keep in sync” enabled.
+   * Ensure Text DATs point to the `src/DATs/*.py` files and have “Keep in sync” enabled.
 4. **Test & Iterate:**
 
    * Trigger OSC inputs, build addresses in the UI, and verify routing via OSC Out DAT.
