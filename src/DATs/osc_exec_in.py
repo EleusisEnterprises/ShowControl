@@ -7,6 +7,7 @@ import TD
 from TD import DAT, tdu
 import routing_engine
 import osc_helpers
+import ui_helpers
 
 #TouchDesigner, see the documentation in ``TDCONTEXT.md``.
 
@@ -53,3 +54,13 @@ def onCellChange(dat, cells, prev):
 def onSizeChange(dat):
     """Callback triggered when table size changes; currently unused."""
     return
+
+
+def send_from_ui(layer_dd, channel_dd, index_field=None, value_field=None):
+    """Assemble an OSC address from UI widgets and send it out."""
+    address = ui_helpers.assemble_osc_address(layer_dd, channel_dd, index_field)
+    value = 0
+    if value_field is not None:
+        value = ui_helpers.get_numeric_value(value_field)
+    routing_engine.route_message(address, value)
+    osc_helpers.handle_incoming(address, value)

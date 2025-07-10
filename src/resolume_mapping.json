@@ -1,3 +1,23 @@
 {
-  "master_dimmer": "/composition/layers/1/video/opacity"
+  "master_dimmer": "/composition/video/opacity",
+  "layer_1_opacity": "/composition/layers/1/video/opacity",
+  "layer_1_clip_1_connect": "/composition/layers/1/clips/1/connect",
+  "layer_1_clip_2_connect": "/composition/layers/1/clips/2/connect",
+  "layer_1_clip_3_connect": "/composition/layers/1/clips/3/connect",
+  "layer_1_clip_4_connect": "/composition/layers/1/clips/4/connect",
+  "layer_2_opacity": "/composition/layers/2/video/opacity",
+  "layer_2_clip_1_connect": "/composition/layers/2/clips/1/connect",
+  "layer_2_clip_2_connect": "/composition/layers/2/clips/2/connect",
+  "layer_2_clip_3_connect": "/composition/layers/2/clips/3/connect",
+  "layer_2_clip_4_connect": "/composition/layers/2/clips/4/connect",
+  "layer_3_opacity": "/composition/layers/3/video/opacity",
+  "layer_3_clip_1_connect": "/composition/layers/3/clips/1/connect",
+  "layer_3_clip_2_connect": "/composition/layers/3/clips/2/connect",
+  "layer_3_clip_3_connect": "/composition/layers/3/clips/3/connect",
+  "layer_3_clip_4_connect": "/composition/layers/3/clips/4/connect",
+  "layer_4_opacity": "/composition/layers/4/video/opacity",
+  "layer_4_clip_1_connect": "/composition/layers/4/clips/1/connect",
+  "layer_4_clip_2_connect": "/composition/layers/4/clips/2/connect",
+  "layer_4_clip_3_connect": "/composition/layers/4/clips/3/connect",
+  "layer_4_clip_4_connect": "/composition/layers/4/clips/4/connect"
 }

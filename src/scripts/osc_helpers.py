@@ -40,20 +40,20 @@ def _load_configs() -> None:
     for mf in MAPPING_FILES:
         data = _read_json(mf)
         for key, val in data.items():
+            vals = val if isinstance(val, list) else [val]
             if key not in _mappings:
-                _mappings[key] = val
-            else:
-                existing = _mappings[key]
-                if isinstance(existing, list):
-                    if isinstance(val, list):
-                        existing.extend(val)
-                    else:
-                        existing.append(val)
-                else:
-                    if isinstance(val, list):
-                        _mappings[key] = [existing] + val
-                    else:
-                        _mappings[key] = [existing, val]
+                _mappings[key] = vals[0] if len(vals) == 1 else list(vals)
+                continue
+
+            existing = _mappings[key]
+            if not isinstance(existing, list):
+                existing = [existing]
+
+            for v in vals:
+                if v not in existing:
+                    existing.append(v)
+
+            _mappings[key] = existing if len(existing) > 1 else existing[0]
 
 # Load configs on import
 _load_configs()
