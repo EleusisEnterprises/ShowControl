@@ -29,4 +29,4 @@ These `.py` files let you edit all your DAT logic in VSCode, then hot-reload in 
 - **resolume_mapping.json** translates those generic names to Resolume-specific addresses.
 - **laser_mapping.json** does the same for laser controllers.
 
-These files let `osc_helpers.handle_incoming` route a single generic message to multiple targets.
+These files let `routing_engine.route_message` route a single generic message to multiple targets.

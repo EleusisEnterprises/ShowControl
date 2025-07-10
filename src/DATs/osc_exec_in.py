@@ -5,7 +5,7 @@ TouchDesigner project. For an overview of how DAT callbacks work inside
 TouchDesigner, see the accompanying ``TDCONTEXT.md`` file.
 """
 from td import DAT, tdu
-import osc_helpers
+import routing_engine
 
 # TouchDesigner requires specific callback names that do not follow PEP 8
 # conventions. Disable the related pylint warnings for this module.
@@ -14,7 +14,7 @@ import osc_helpers
 def onTableChange(dat: 'DAT') -> None:
     """Handle table changes from the linked ``DAT Execute`` DAT.
 
-    The callback forwards each OSC row to :func:`osc_helpers.handle_incoming`.
+    The callback forwards each OSC row to :func:`routing_engine.route_message`.
     See ``TDCONTEXT.md`` for an overview of callback execution.
     """
     for row in dat.rows()[1:]:
@@ -39,7 +39,7 @@ def onTableChange(dat: 'DAT') -> None:
                 print(f"osc_exec_in: invalid value '{raw_value}' for {address}")
                 continue
 
-        osc_helpers.handle_incoming(address, value)
+        routing_engine.route_message(address, value)
     return
 
 

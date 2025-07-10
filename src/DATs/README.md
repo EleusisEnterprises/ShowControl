@@ -9,8 +9,8 @@ This folder holds all external Text DAT scripts used by **showcontrol.toe**. Eac
   - Contains the `onTableChange(dat)` callback that reads OSC In DAT rows, validates that column `1` contains a numeric value, and calls:
 
     ```python
-    import osc_helpers
-    osc_helpers.handle_incoming(address, value)
+    import routing_engine
+    routing_engine.route_message(address, value)
     ```
 
 - **`osc_in.py`**
