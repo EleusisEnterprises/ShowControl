@@ -14,3 +14,11 @@ This folder holds:
 - **osc_out_dat.txt** → used by `/project1/scripts/osc_helpers.py` to send messages via OSC Out DAT
 
 These `.txt` files let you edit all your DAT logic in VSCode, then hot-reload in TD.
+
+## JSON Schemas
+
+- **osc_patterns.json** maps generic cue names to OSC address templates.
+- **resolume_mapping.json** translates those generic names to Resolume-specific addresses.
+- **laser_mapping.json** does the same for laser controllers.
+
+These files let `osc_helpers.handle_incoming` route a single generic message to multiple targets.
