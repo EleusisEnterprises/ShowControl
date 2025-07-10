@@ -7,6 +7,7 @@ This folder holds all external Text DAT scripts used by **showcontrol.toe**. Eac
 - **`dat_execute_in.txt`**  
   - Attached to `/project1/dat_execute_in` (DAT Execute DAT)  
   - Contains the `onTableChange(dat)` callback that reads OSC In DAT rows, extracts `address` and `value`, and calls:
+
     ```python
     import osc_helpers
     osc_helpers.handle_incoming(address, value)
@@ -19,6 +20,7 @@ This folder holds all external Text DAT scripts used by **showcontrol.toe**. Eac
 - **`osc_out_dat.txt`**  
   - Used by `/project1/osc_out_dat` (OSC Out DAT)  
   - Defines a helper snippet that writes `[address, value]` rows before sending, for example:
+
     ```python
     def send_via_dat(address, value):
         op('osc_out_dat').clear()
