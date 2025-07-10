@@ -1,6 +1,6 @@
 # DATs Directory
 
-This folder holds all external Text DAT scripts used by **showcontrol.toe**. Each `.py` file here is loaded by a corresponding Text DAT in TouchDesigner with **“Keep in sync with external file”** enabled. Edit these files in VSCode and your changes will hot-reload in TD.
+This folder holds all external Text DAT scripts used by **showcontrol.toe**. Each `.py` file here is loaded by a corresponding Text DAT in TouchDesigner with **“Keep in sync with external file”** enabled. Edit these files in VSCode and your changes will hot-reload in TD. See [`../../TDCONTEXT.md`](../../TDCONTEXT.md) for an overview of TouchDesigner Python scripting.
 
 ## Files
 
