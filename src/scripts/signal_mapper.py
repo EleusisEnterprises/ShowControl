@@ -1,3 +1,4 @@
+
 from typing import Any, Tuple, Optional
 
 OSC_ADDRESS_MAP = {
