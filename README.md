@@ -72,21 +72,11 @@ This means show control is:
 
 ---
 
-## 🗂️ Repo Structure
-
-The project is organized for clarity and modular development.
-
-- `assets/` – reference diagrams, screenshots, and protocol docs.
-- `config/` – runtime configuration files and routing presets.
-- `src/` – all executable logic:
-  - `midi_devices/` – normalization layers for MIDI controllers.
-  - `onyx/` – Onyx lighting console integration.
-  - `quickshow/` – Pangolin Quickshow/Beyond integration.
-  - `resolume/` – Resolume video software integration.
-  - `router/` – the central signal hub and GUI logic.
-  - `patterns/` – mapping definitions translating raw signals.
-  - `scripts/` – shared Python helpers used across modules.
-- `requirements.txt` – Python dependencies (currently empty placeholder).
+## 🗂️ Repo Structure (Recommended)
+- `src/` – Core application modules
+- `config/` – Runtime configuration and presets
+- `assets/` – Reference diagrams and documentation
+- `tests/` – Automated unit tests
 
 ---
 
