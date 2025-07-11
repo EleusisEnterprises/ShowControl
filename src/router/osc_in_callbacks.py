@@ -1,24 +1,29 @@
-#this is attatched to the OSC In DAT in the router component
+"""OSC input callbacks for the central router component."""
 
-# me - this DAT
-# 
-# dat - the DAT that received a message
-# rowIndex - the row number the message was placed into
-# message - an ascii representation of the data
-#           Unprintable characters and unicode characters will
-#           not be preserved. Use the 'byteData' parameter to get
-#           the raw bytes that were sent.
-# byteData - a byte array of the message.
-# timeStamp - the arrival time component the OSC message
-# address - the address component of the OSC message
-# args - a list of values contained within the OSC message
-# peer - a Peer object describing the originating message
-#   peer.close()    #close the connection
-#   peer.owner  #the operator to whom the peer belongs
-#   peer.address    #network address associated with the peer
-#   peer.port       #network port associated with the peer
-#
+import logging
+from typing import Any
 
-def onReceiveOSC(dat, rowIndex, message, byteData, timeStamp, address, args, peer):
-	return
-	
+from ..scripts import signal_mapper
+from .signal_router import dispatch
+
+LOGGER = logging.getLogger(__name__)
+
+
+def onReceiveOSC(dat: Any, rowIndex: int, message: str, byteData: bytes,
+                  timeStamp: float, address: str, args: list[Any], peer: Any) -> None:
+    """Handle incoming OSC messages from connected devices.
+
+    Parameters correspond to TouchDesigner's OSC In DAT callback signature.
+    The function normalizes incoming messages using :mod:`signal_mapper` and
+    dispatches them to the router. Unrecognized messages are logged.
+    """
+    try:
+        signal_name, value = signal_mapper.parse_osc_message(address, args)
+    except ValueError as exc:
+        LOGGER.warning("Ignored OSC message %s %s: %s", address, args, exc)
+        return
+
+    try:
+        dispatch(signal_name, value)
+    except Exception as exc:  # pragma: no cover - runtime safety
+        LOGGER.error("Failed to dispatch %s=%s: %s", signal_name, value, exc)
