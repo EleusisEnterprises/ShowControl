@@ -1,91 +1,54 @@
-"""Signal mapping utilities for ShowControl.
 
-This module offers helpers for detecting incoming signal types,
-normalizing their values to a 0–1 range, and mapping those
-normalized signals to OSC addresses. It is importable via
-``mod.scripts.signal_mapper``.
+"""Utilities for interpreting raw OSC messages into normalized signal data.
 """
 
+import logging
 from typing import Any, Tuple
 
-
-def detect_signal_type(data: Any) -> str:
-    """Return the detected signal type.
-
-    Parameters
-    ----------
-    data:
-        Raw data representing a signal. Can be a dict or any
-        structure from an input device.
-
-    Returns
-    -------
-    str
-        One of ``"midi"``, ``"osc"``, ``"dmx"``, or ``"unknown"``.
-    """
-    if isinstance(data, dict):
-        keys = set(data)
-        if {"address", "args"} <= keys:
-            return "osc"
-        if {"status", "data1", "data2"} <= keys or {"note", "velocity"} <= keys:
-            return "midi"
-        if {"universe", "channel", "value"} <= keys:
-            return "dmx"
-    if isinstance(data, (list, tuple)) and len(data) == 3:
-        if all(isinstance(x, int) and 0 <= x <= 255 for x in data):
-            return "dmx"
-    return "unknown"
+LOGGER = logging.getLogger(__name__)
 
 
-def normalize_signal(name: str, value: Any) -> Tuple[str, float]:
-    """Normalize a value to the range 0–1.
+def parse_osc_message(address: str, args: list[Any]) -> Tuple[str, float]:
+    """Parse an OSC address and arguments into a normalized signal.
 
     Parameters
     ----------
-    name:
-        Name or type hint for the signal.
-    value:
-        Raw numeric value.
+    address: str
+        OSC address like ``/signal/fader1``.
+    args: list
+        Arguments from the OSC packet.
 
     Returns
     -------
-    tuple
-        ``(standardized_name, normalized_value)``
+    Tuple[str, float]
+        ``(signal_name, normalized_value)``.
+
+    Raises
+    ------
+    ValueError
+        If the address or arguments cannot be interpreted.
     """
-    try:
-        value_f = float(value)
-    except (TypeError, ValueError):
-        return name.lower(), 0.0
+    if not address.startswith("/signal/"):
+        raise ValueError(f"Unhandled address: {address}")
 
-    lower = name.lower()
-    if lower in {"midi", "cc", "note"}:
-        value_f /= 127.0
-    elif lower == "dmx":
-        value_f /= 255.0
-    if value_f < 0:
-        value_f = 0.0
-    elif value_f > 1:
-        value_f = 1.0
-    return lower, value_f
+    if not args:
+        raise ValueError("Missing value in OSC args")
 
+    name = address.split("/", 2)[-1]
+    value = args[0]
 
-def to_osc_address(signal: Tuple[str, float] | str) -> str:
-    """Convert a signal name into an OSC address.
+    # Normalize numeric values to 0-1 range
+    if isinstance(value, (int, float)):
+        if 0 <= value <= 1:
+            norm = float(value)
+        elif 0 <= value <= 127:
+            norm = float(value) / 127
+        elif 0 <= value <= 255:
+            norm = float(value) / 255
+        else:
+            raise ValueError(f"Unsupported numeric range for {value}")
+    else:
+        raise ValueError(f"Unsupported value type: {type(value)!r}")
 
-    Parameters
-    ----------
-    signal:
-        Either a ``(name, value)`` tuple or the signal name alone.
-
-    Returns
-    -------
-    str
-        OSC address string beginning with ``/``.
-    """
-    name = signal[0] if isinstance(signal, tuple) else signal
-    if isinstance(name, int):
-        return f"/{name}"
-    name_str = str(name)
-    if not name_str.startswith("/"):
-        name_str = "/" + name_str.replace("_", "/")
-    return name_str
+    LOGGER.debug("Parsed OSC %s %s -> %s:%f", address, args, name, norm)
+    return name, norm
