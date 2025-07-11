@@ -5,7 +5,6 @@ This script will be placed in a Text DAT inside the /Onyx COMP.
 """
 import logging
 from typing import Tuple
-from td import mod
 
 # Reference the generic mapper from the central /scripts COMP
 mapper = mod('/scripts/signal_mapper')

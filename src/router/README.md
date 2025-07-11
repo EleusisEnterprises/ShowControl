@@ -18,3 +18,21 @@ Expected behavior:
 
 Additional modules in this folder may include GUI handlers, mapping logic, and
 routing configuration loaders.
+
+## `osc_pattern_generator.py`
+
+This new module facilitates the dynamic generation of OSC addresses and values
+based on user selections within a TouchDesigner UI. It acts as a bridge between
+the user interface and the underlying pattern generation logic defined in modules
+like `src/onyx/patterns.py` and `src/resolume/patterns.py`.
+
+It exposes functions (`get_action_names`, `get_action_parameters`,
+`generate_osc_message`) that can be called directly from TouchDesigner Python
+scripts to:
+
+- Populate dropdown menus with available OSC control actions.
+- Retrieve parameter definitions for selected actions to dynamically build UI input fields.
+- Generate the final OSC address and value tuple for sending.
+
+This allows for a flexible and extensible UI for controlling various systems
+via OSC without hardcoding addresses.

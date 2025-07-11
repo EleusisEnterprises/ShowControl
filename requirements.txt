@@ -1,2 +1,2 @@
-pytest>=7.0
-
+pytest
+touchdesigner-stubs

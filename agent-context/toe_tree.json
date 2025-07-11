@@ -37,8 +37,7 @@
       {
         "name": "osc_in_onyx_callbacks",
         "type": "textDAT",
-        "path": "/Onyx/osc_in_onyx_callbacks",
-        "text": "# This script is executed by the oscinDAT when a message is received.\n\n# Get a reference to our Onyx-specific parser module\nonyx_parser = mod('onyx_osc_parser')\n\ndef onReceiveOSC(dat, rowIndex, message, address, args, peer):\n    \"\"\"\n    Called by the oscinDAT.\n    This script will find or create the output table, then parse and store the signal.\n    \"\"\"\n    # Find the output table. If it doesn't exist, create and initialize it.\n    # This makes the component self-contained and robust.\n    output_table = op('normalized_signals')\n    if output_table is None:\n        output_table = dat.owner.create(tableDAT, 'normalized_signals')\n        output_table.clear()\n        output_table.appendRow(['signal', 'value'])\n\n    try:\n        # Use our dedicated parser to process the message\n        signal_name, norm_value = onyx_parser.parse_message(address, args)\n\n        # Store the result in our output table.\n        # This makes the signal available to the rest of the /Onyx component.\n        output_table[signal_name, 'value'] = norm_value\n\n    except ValueError as e:\n        # Log errors for debugging, but don't stop the network\n        debug(e)\n\n    return\n"
+        "path": "/Onyx/osc_in_onyx_callbacks"
       },
       {
         "name": "ndi_in_onyx_grouptable",
@@ -49,18 +48,6 @@
         "name": "ndi_out_onyx_grouptable",
         "type": "tableDAT",
         "path": "/Onyx/ndi_out_onyx_grouptable"
-      },
-      {
-        "name": "onyx_osc_parser",
-        "type": "textDAT",
-        "path": "/Onyx/onyx_osc_parser",
-        "text": "\"\"\"\nParses OSC messages specific to Obsidian Onyx, using the generic signal_mapper.\n\nThis script will be placed in a Text DAT inside the /Onyx COMP.\n\"\"\"\nimport logging\nfrom typing import Tuple\n\n# Reference the generic mapper from the central /scripts COMP\nmapper = mod('/scripts/signal_mapper')\nLOGGER = logging.getLogger(__name__)\n\ndef parse_message(address: str, args: list) -> Tuple[str, float]:\n    \"\"\"\n    Parses an Onyx OSC message.\n    Onyx uses the '/Mx' namespace.\n    Example Addresses:\n    - /Mx/fader/4203\n    - /Mx/button/6101\n    - /Mx/playback/page1/3/go\n\n    Returns\n    -------\n    Tuple[str, float]\n        (signal_name, normalized_value) e.g. ('fader/4203', 1.0)\n    \"\"\"\n    try:\n        # Use the generic parser with the 'Mx' namespace\n        name, norm_value = mapper.parse_osc_message(address, args, namespace='Mx')\n\n        LOGGER.debug(\"Parsed Onyx OSC %s -> %s:%f\", address, name, norm_value)\n        return name, norm_value\n\n    except ValueError as e:\n        # Re-raise the exception to be handled by the caller\n        raise ValueError(f\"Failed to parse Onyx message: {e}\") from e\n"
-      },
-      {
-        "name": "normalized_signals",
-        "type": "tableDAT",
-        "path": "/Onyx/normalized_signals",
-        "text": "signal\tvalue\n"
       }
     ]
   },
@@ -87,6 +74,16 @@
         "path": "/Router/oscout1"
       },
       {
+        "name": "action_names",
+        "type": "textDAT",
+        "path": "/Router/action_names"
+      },
+      {
+        "name": "basicWidgets",
+        "type": "containerCOMP",
+        "path": "/Router/basicWidgets"
+      },
+      {
         "name": "ndi_in_router",
         "type": "ndiinTOP",
         "path": "/Router/ndi_in_router"
@@ -95,6 +92,11 @@
         "name": "osc_in_router",
         "type": "oscinDAT",
         "path": "/Router/osc_in_router"
+      },
+      {
+        "name": "masterDropMenu",
+        "type": "widgetCOMP",
+        "path": "/Router/masterDropMenu"
       },
       {
         "name": "ndi_out_router",
@@ -115,6 +117,11 @@
         "name": "ndi_out_grouptable",
         "type": "tableDAT",
         "path": "/Router/ndi_out_grouptable"
+      },
+      {
+        "name": "osc_pattern_generator",
+        "type": "textDAT",
+        "path": "/Router/osc_pattern_generator"
       }
     ]
   },
@@ -134,7 +141,13 @@
     "name": "scripts",
     "type": "baseCOMP",
     "path": "/scripts",
-    "children": []
+    "children": [
+      {
+        "name": "signal_mapper",
+        "type": "textDAT",
+        "path": "/scripts/signal_mapper"
+      }
+    ]
   },
   {
     "name": "Resolume",

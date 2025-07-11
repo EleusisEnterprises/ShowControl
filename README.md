@@ -69,6 +69,7 @@ This means show control is:
 - **Operator-focused:** Live GUI for on-the-fly control mapping and assignment—no more show-stopping rewires.
 - **Extensible:** Add new hardware, software, or protocols by simply creating a new device COMP and mapping patterns.
 - **Automatic signal mapping:** Use the `signal_mapper` module to auto-detect incoming data and assign it according to your pattern files.
+- **UI-driven OSC Generation:** Dynamically construct and send outgoing OSC messages to various systems (e.g., Onyx, Resolume) directly from the operator GUI, leveraging predefined patterns for easy control.
 - **Collaborative:** Designed for teams, with clear division between UI, routing, and device logic.
 
 ---
@@ -90,4 +91,3 @@ This means show control is:
 3. Use the modules inside `src/` within your TouchDesigner project or other Python environment to build out your show-control pipeline.
 4. Add device-specific configuration in `config/` and keep diagrams or notes in `assets/` as your system evolves.
 5. Run `python src/scripts/signal_mapper.py` to auto-apply mappings from your `patterns` directory.
-
