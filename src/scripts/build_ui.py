@@ -5,7 +5,6 @@ It is designed to be called by a runner script.
 """
 
 # --- SCRIPT ---
-from td import op, ui, labelCOMP, sliderCOMP
 from src.onyx import patterns as onyx_patterns
 from src.resolume import patterns as resolume_patterns
 

@@ -16,7 +16,6 @@ and execute it, building the UI in your router component.
 
 import sys
 import os
-from td import project, ui
 
 
 # --- Add project root to Python path ---
