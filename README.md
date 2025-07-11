@@ -73,3 +73,8 @@ This means show control is:
 ---
 
 ## 🗂️ Repo Structure (Recommended)
+- `src/` – Core application modules
+- `config/` – Runtime configuration and presets
+- `assets/` – Reference diagrams and documentation
+- `tests/` – Automated unit tests
+
