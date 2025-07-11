@@ -1,2 +1,4 @@
 pytest
 touchdesigner-stubs
+openai
+codex
