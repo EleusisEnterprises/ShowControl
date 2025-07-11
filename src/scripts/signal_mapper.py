@@ -31,9 +31,8 @@ def parse_osc_message(address: str, args: list[Any], namespace: str = "signal") 
     ValueError
         If the address or arguments cannot be interpreted.
     """
-    parts = address.split('/', 2)
-    # Expects ['', 'namespace', 'rest/of/path']
-    if len(parts) < 3 or parts[0] != '' or parts[1] != namespace:
+    expected_prefix = f"/{namespace}/"
+    if not address.startswith(expected_prefix):
         raise ValueError(
             f"Unhandled address: {address}, expected format '/{namespace}/<name>'"
         )
@@ -41,7 +40,8 @@ def parse_osc_message(address: str, args: list[Any], namespace: str = "signal") 
     if not args:
         raise ValueError("Missing value in OSC args")
 
-    name = parts[2]
+    # Remove the prefix to get the signal name
+    name = address[len(expected_prefix):]
     value = args[0]
 
     # Normalize numeric values to 0-1 range
