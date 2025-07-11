@@ -27,8 +27,6 @@ def parse_message(address: str, args: list) -> Tuple[str, float]:
     try:
         # Use the generic parser with the 'Mx' namespace
         name, norm_value = mapper.parse_osc_message(address, args, namespace='Mx')
-
-        LOGGER.debug("Parsed Onyx OSC %s -> %s:%f", address, name, norm_value)
         return name, norm_value
 
     except ValueError as e:
