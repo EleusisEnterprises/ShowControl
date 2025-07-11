@@ -1,0 +1,160 @@
+[
+  {
+    "name": "Onyx",
+    "type": "containerCOMP",
+    "path": "/Onyx",
+    "children": [
+      {
+        "name": "dmx_in_onyx",
+        "type": "dmxinCHOP",
+        "path": "/Onyx/dmx_in_onyx"
+      },
+      {
+        "name": "ndi_in_onyx",
+        "type": "ndiinTOP",
+        "path": "/Onyx/ndi_in_onyx"
+      },
+      {
+        "name": "osc_in_onyx",
+        "type": "oscinDAT",
+        "path": "/Onyx/osc_in_onyx"
+      },
+      {
+        "name": "ndi_out_onyx",
+        "type": "ndioutTOP",
+        "path": "/Onyx/ndi_out_onyx"
+      },
+      {
+        "name": "osc_out_onyx",
+        "type": "oscoutDAT",
+        "path": "/Onyx/osc_out_onyx"
+      },
+      {
+        "name": "dmx_in_filterdat",
+        "type": "tableDAT",
+        "path": "/Onyx/dmx_in_filterdat"
+      },
+      {
+        "name": "osc_in_onyx_callbacks",
+        "type": "textDAT",
+        "path": "/Onyx/osc_in_onyx_callbacks"
+      },
+      {
+        "name": "ndi_in_onyx_grouptable",
+        "type": "tableDAT",
+        "path": "/Onyx/ndi_in_onyx_grouptable"
+      },
+      {
+        "name": "ndi_out_onyx_grouptable",
+        "type": "tableDAT",
+        "path": "/Onyx/ndi_out_onyx_grouptable"
+      }
+    ]
+  },
+  {
+    "name": "APC40",
+    "type": "containerCOMP",
+    "path": "/APC40",
+    "children": [
+      {
+        "name": "midi_in_APC40",
+        "type": "midiinCHOP",
+        "path": "/APC40/midi_in_APC40"
+      }
+    ]
+  },
+  {
+    "name": "Router",
+    "type": "containerCOMP",
+    "path": "/Router",
+    "children": [
+      {
+        "name": "oscout1",
+        "type": "oscoutDAT",
+        "path": "/Router/oscout1"
+      },
+      {
+        "name": "ndi_in_router",
+        "type": "ndiinTOP",
+        "path": "/Router/ndi_in_router"
+      },
+      {
+        "name": "osc_in_router",
+        "type": "oscinDAT",
+        "path": "/Router/osc_in_router"
+      },
+      {
+        "name": "ndi_out_router",
+        "type": "ndioutTOP",
+        "path": "/Router/ndi_out_router"
+      },
+      {
+        "name": "osc_in_callbacks",
+        "type": "textDAT",
+        "path": "/Router/osc_in_callbacks"
+      },
+      {
+        "name": "ndi_in_grouptable",
+        "type": "tableDAT",
+        "path": "/Router/ndi_in_grouptable"
+      },
+      {
+        "name": "ndi_out_grouptable",
+        "type": "tableDAT",
+        "path": "/Router/ndi_out_grouptable"
+      }
+    ]
+  },
+  {
+    "name": "APCmini",
+    "type": "containerCOMP",
+    "path": "/APCmini",
+    "children": [
+      {
+        "name": "midi_in_APCmini",
+        "type": "midiinCHOP",
+        "path": "/APCmini/midi_in_APCmini"
+      }
+    ]
+  },
+  {
+    "name": "scripts",
+    "type": "baseCOMP",
+    "path": "/scripts",
+    "children": []
+  },
+  {
+    "name": "Resolume",
+    "type": "containerCOMP",
+    "path": "/Resolume",
+    "children": []
+  },
+  {
+    "name": "Quickshow",
+    "type": "containerCOMP",
+    "path": "/Quickshow",
+    "children": [
+      {
+        "name": "midiout1",
+        "type": "midioutCHOP",
+        "path": "/Quickshow/midiout1"
+      },
+      {
+        "name": "osc_in_qs",
+        "type": "oscinDAT",
+        "path": "/Quickshow/osc_in_qs"
+      },
+      {
+        "name": "osc_in_qs_callbacks",
+        "type": "textDAT",
+        "path": "/Quickshow/osc_in_qs_callbacks"
+      }
+    ]
+  },
+  {
+    "name": "TD_network_export",
+    "type": "executeDAT",
+    "path": "/TD_network_export",
+    "children": []
+  }
+]
