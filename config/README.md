@@ -1,6 +1,7 @@
 # `config/` – Runtime & Environment Configuration
 
 This directory includes:
+
 - Routing assignment presets
 - Device and environment configurations
 - System-wide flags and port mappings

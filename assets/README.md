@@ -1,6 +1,7 @@
 # `assets/` – Reference Files, Diagrams, and Documentation
 
 This folder includes:
+
 - Architecture diagrams
 - TouchDesigner screenshots
 - Device protocol docs
