@@ -1,50 +1,54 @@
 
-from typing import Any, Tuple, Optional
+"""Utilities for interpreting raw OSC messages into normalized signal data.
+"""
 
-OSC_ADDRESS_MAP = {
-    '/fader/1': 'fader_1',
-    '/fader/2': 'fader_2',
-    '/button/1': 'button_1',
-}
+import logging
+from typing import Any, Tuple
 
-INVERSE_OSC_ADDRESS_MAP = {v: k for k, v in OSC_ADDRESS_MAP.items()}
-
-def detect_signal_type(data: Any) -> str:
-    """Return the signal type based on the payload structure."""
-    if isinstance(data, dict):
-        if {'note', 'velocity'} <= data.keys() or {'cc', 'value'} <= data.keys():
-            return 'MIDI'
-        if 'address' in data:
-            return 'OSC'
-        if {'dmx_ch', 'value'} <= data.keys() or {'universe', 'channel'} <= data.keys():
-            return 'DMX'
-    if isinstance(data, (bytes, bytearray)) and len(data) in (2, 3):
-        return 'MIDI'
-    return 'UNKNOWN'
+LOGGER = logging.getLogger(__name__)
 
 
-def normalize_value(value: float, src_min: float, src_max: float, dst_min: float = 0.0,
-                     dst_max: float = 1.0) -> float:
-    """Normalize a value from a source range to a destination range."""
-    if src_max == src_min:
-        raise ValueError('Invalid source range')
-    ratio = (value - src_min) / (src_max - src_min)
-    return dst_min + ratio * (dst_max - dst_min)
+def parse_osc_message(address: str, args: list[Any]) -> Tuple[str, float]:
+    """Parse an OSC address and arguments into a normalized signal.
 
+    Parameters
+    ----------
+    address: str
+        OSC address like ``/signal/fader1``.
+    args: list
+        Arguments from the OSC packet.
 
-def map_osc_to_internal(address: str) -> Optional[str]:
-    """Convert an OSC address to an internal control name."""
-    return OSC_ADDRESS_MAP.get(address)
+    Returns
+    -------
+    Tuple[str, float]
+        ``(signal_name, normalized_value)``.
 
+    Raises
+    ------
+    ValueError
+        If the address or arguments cannot be interpreted.
+    """
+    if not address.startswith("/signal/"):
+        raise ValueError(f"Unhandled address: {address}")
 
-def map_internal_to_osc(name: str) -> Optional[str]:
-    """Convert an internal control name to an OSC address."""
-    return INVERSE_OSC_ADDRESS_MAP.get(name)
+    if not args:
+        raise ValueError("Missing value in OSC args")
 
+    name = address.split("/", 2)[-1]
+    value = args[0]
 
-def parse_osc_message(address: str, args: list) -> Tuple[Optional[str], Optional[Any]]:
-    """Parse an incoming OSC message to an internal control and value."""
-    name = map_osc_to_internal(address)
-    value = args[0] if args else None
-    return name, value
+    # Normalize numeric values to 0-1 range
+    if isinstance(value, (int, float)):
+        if 0 <= value <= 1:
+            norm = float(value)
+        elif 0 <= value <= 127:
+            norm = float(value) / 127
+        elif 0 <= value <= 255:
+            norm = float(value) / 255
+        else:
+            raise ValueError(f"Unsupported numeric range for {value}")
+    else:
+        raise ValueError(f"Unsupported value type: {type(value)!r}")
 
+    LOGGER.debug("Parsed OSC %s %s -> %s:%f", address, args, name, norm)
+    return name, norm
