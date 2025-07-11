@@ -1,91 +1,50 @@
-"""Signal mapping utilities for ShowControl.
 
-This module offers helpers for detecting incoming signal types,
-normalizing their values to a 0–1 range, and mapping those
-normalized signals to OSC addresses. It is importable via
-``mod.scripts.signal_mapper``.
-"""
+from typing import Any, Tuple, Optional
 
-from typing import Any, Tuple
+OSC_ADDRESS_MAP = {
+    '/fader/1': 'fader_1',
+    '/fader/2': 'fader_2',
+    '/button/1': 'button_1',
+}
 
+INVERSE_OSC_ADDRESS_MAP = {v: k for k, v in OSC_ADDRESS_MAP.items()}
 
 def detect_signal_type(data: Any) -> str:
-    """Return the detected signal type.
-
-    Parameters
-    ----------
-    data:
-        Raw data representing a signal. Can be a dict or any
-        structure from an input device.
-
-    Returns
-    -------
-    str
-        One of ``"midi"``, ``"osc"``, ``"dmx"``, or ``"unknown"``.
-    """
+    """Return the signal type based on the payload structure."""
     if isinstance(data, dict):
-        keys = set(data)
-        if {"address", "args"} <= keys:
-            return "osc"
-        if {"status", "data1", "data2"} <= keys or {"note", "velocity"} <= keys:
-            return "midi"
-        if {"universe", "channel", "value"} <= keys:
-            return "dmx"
-    if isinstance(data, (list, tuple)) and len(data) == 3:
-        if all(isinstance(x, int) and 0 <= x <= 255 for x in data):
-            return "dmx"
-    return "unknown"
+        if {'note', 'velocity'} <= data.keys() or {'cc', 'value'} <= data.keys():
+            return 'MIDI'
+        if 'address' in data:
+            return 'OSC'
+        if {'dmx_ch', 'value'} <= data.keys() or {'universe', 'channel'} <= data.keys():
+            return 'DMX'
+    if isinstance(data, (bytes, bytearray)) and len(data) in (2, 3):
+        return 'MIDI'
+    return 'UNKNOWN'
 
 
-def normalize_signal(name: str, value: Any) -> Tuple[str, float]:
-    """Normalize a value to the range 0–1.
-
-    Parameters
-    ----------
-    name:
-        Name or type hint for the signal.
-    value:
-        Raw numeric value.
-
-    Returns
-    -------
-    tuple
-        ``(standardized_name, normalized_value)``
-    """
-    try:
-        value_f = float(value)
-    except (TypeError, ValueError):
-        return name.lower(), 0.0
-
-    lower = name.lower()
-    if lower in {"midi", "cc", "note"}:
-        value_f /= 127.0
-    elif lower == "dmx":
-        value_f /= 255.0
-    if value_f < 0:
-        value_f = 0.0
-    elif value_f > 1:
-        value_f = 1.0
-    return lower, value_f
+def normalize_value(value: float, src_min: float, src_max: float, dst_min: float = 0.0,
+                     dst_max: float = 1.0) -> float:
+    """Normalize a value from a source range to a destination range."""
+    if src_max == src_min:
+        raise ValueError('Invalid source range')
+    ratio = (value - src_min) / (src_max - src_min)
+    return dst_min + ratio * (dst_max - dst_min)
 
 
-def to_osc_address(signal: Tuple[str, float] | str) -> str:
-    """Convert a signal name into an OSC address.
+def map_osc_to_internal(address: str) -> Optional[str]:
+    """Convert an OSC address to an internal control name."""
+    return OSC_ADDRESS_MAP.get(address)
 
-    Parameters
-    ----------
-    signal:
-        Either a ``(name, value)`` tuple or the signal name alone.
 
-    Returns
-    -------
-    str
-        OSC address string beginning with ``/``.
-    """
-    name = signal[0] if isinstance(signal, tuple) else signal
-    if isinstance(name, int):
-        return f"/{name}"
-    name_str = str(name)
-    if not name_str.startswith("/"):
-        name_str = "/" + name_str.replace("_", "/")
-    return name_str
+def map_internal_to_osc(name: str) -> Optional[str]:
+    """Convert an internal control name to an OSC address."""
+    return INVERSE_OSC_ADDRESS_MAP.get(name)
+
+
+def parse_osc_message(address: str, args: list) -> Tuple[Optional[str], Optional[Any]]:
+    """Parse an incoming OSC message to an internal control and value."""
+    name = map_osc_to_internal(address)
+    value = args[0] if args else None
+    return name, value
+
