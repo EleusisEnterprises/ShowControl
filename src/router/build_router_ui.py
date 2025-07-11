@@ -28,10 +28,13 @@ if project_root not in sys.path:
 try:
     # Import the main UI building function
     from src.scripts.build_ui import build_ui
-    
+
+    # The target for the UI is the component containing this script.
+    target = me.owner
+
     # Execute the function
-    print("Executing build_ui() from src.scripts.build_ui...")
-    build_ui()
+    print(f"Executing build_ui() inside {target.path}...")
+    build_ui(target)
     print("UI build process finished.")
 
 except ImportError as e:
