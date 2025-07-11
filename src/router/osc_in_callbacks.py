@@ -1,3 +1,5 @@
+#this is attatched to the OSC In DAT in the router component
+
 # me - this DAT
 # 
 # dat - the DAT that received a message
